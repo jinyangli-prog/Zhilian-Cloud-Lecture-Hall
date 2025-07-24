@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cs.sasu.mapper.PhotoMapper">
+    <insert id="savePhoto" parameterType="cs.sasu.pojo.Photo">
+        INSERT INTO photo(uid,uphoto,wz,title,clazz) VALUES (#{uid},#{uphoto},#{wz},#{title},#{clazz})
+    </insert>
+    <select id="getPhoto" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT id,uid,uphoto,wz,title,clazz FROM photo WHERE uid=#{uid}
+    </select>
+    <select id="getPhoto2" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT id,uid,uphoto,wz,title,clazz,checked FROM photo WHERE checked=#{checked}
+    </select>
+    <update id="setChecked" >
+        UPDATE photo SET checked=#{checked} WHERE id=#{id}
+    </update>
+    <select id="getPhotobyId" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT id,uid,uphoto,wz,title,clazz,checked FROM photo WHERE id=#{id}
+    </select>
+    <select id="getPhotoByClazz" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT id,uid,uphoto,wz,title,clazz,checked FROM photo WHERE clazz=#{clazz} AND checked=#{checked}
+    </select>
+    <select id="getPhotoByClazz2" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT id,uid,uphoto,wz,title,clazz,checked FROM photo WHERE clazz=#{clazz}
+    </select>
+    <select id="list" resultType="cs.sasu.pojo.Photo">
+        SELECT * FROM photo
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM photo WHERE id=#{id}
+    </delete>
+    <select id="search" parameterType="java.lang.String" resultType="cs.sasu.pojo.Photo">
+        SELECT * FROM photo where title like CONCAT('%', #{title}, '%')
+    </select>
+</mapper>

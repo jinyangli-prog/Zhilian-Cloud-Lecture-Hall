@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cs.sasu.mapper.MarkMapper">
+    <insert id="saveRemark" parameterType="cs.sasu.pojo.Mark">
+        INSERT INTO remarks(pid, uname, remark, zan) VALUES (#{pid},#{uname},#{remark},#{zan})
+    </insert>
+    <select id="getRemark" parameterType="java.lang.String" resultType="cs.sasu.pojo.Mark">
+        SELECT id,pid, uname, remark, zan FROM remarks WHERE pid=#{pid}
+    </select>
+    <update id="updateZan" parameterType="java.lang.Integer" >
+        UPDATE remarks SET zan=#{zan} WHERE id=#{id}
+    </update>
+</mapper>
